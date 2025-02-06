@@ -1,126 +1,185 @@
-# tactiq.io free youtube transcript
-# CAP Theorem Simplified 2023 | System Design Fundamentals | Distributed Systems | Scaler
+
 # https://www.youtube.com/watch/8UryASGBiR4
 
-cap theorem  is one of the most basic principles of  
-00:00:39.600 distributed storage so if if at all you think about building or working on distributed systems  
-00:00:45.840 in the future cap theorem is a must-have must know so that's why you need to learn cap theorem  
+example of of a real world example of let's say you imagine i am  
 
-              example of of a real world example of let's say you imagine i am  
-00:01:16.720 an entrepreneur i'm looking for ideas and i feel you know what like people need reminders 
+an entrepreneur i'm looking for ideas and i feel you know what like people need reminders 
 
-let's  build a service that just stores reminders right which is i get this very premium number imagine  
-00:01:27.760 i named my company as abcd and i get this very premium number which is one two three four one two  
-00:01:35.040 three four people could just call me on one two three four one two three four and they can tell me  
-00:01:39.120 what they want to remember and then when they call me back i tell them what they wanted to remember  
-00:01:44.160 and then things work it seems to me that this is a great idea so what i do is i set up this line i  
-00:01:51.440 i sit in the office imagine this is me forgive my drawing imagine i sit in the office every time  
-00:01:58.400 somebody tells me let's say i got a call from x and x says hey please remember that i have a  
-00:02:04.240 flight tomorrow at 9 00 pm i say great next time they call and they ask me tell me what i wanted  
-00:02:11.440 you to remember and then i tell them you know what do you have a flight tomorrow at 9pm and then this  
-00:02:15.120 seems great i charge people very normal amount of money to store this information and service takes  
-00:02:21.440 off everybody needs this there's a big market everybody starts using it and then i start to  
-00:02:27.760 hit the problem and you'll notice most systems they start to hit the problem when they hit scale  
-00:02:34.480 then i realize that i'm getting a lot of calls and i'm not enough to address all of those calls  
-00:02:40.560 myself so then i start to think and then i think sure let me let me get my wife also involved  
-00:02:46.160 so now this number actually has me and my wife both of us both of us sit with our diaries where  
-00:02:56.800 the call gets routed to either one of us whoever is free and when i get a call i just  
-00:03:03.120 very quickly if the person is asking me to take a reminder i just take down that reminder right  
-00:03:07.680 and when the person calls me back i respond back to the reminder great i have suddenly  
-00:03:12.800 now doubled my capacity if i was able to take 1000 requests in a day before now i can take  
-00:03:19.600 2000 requests because i have my wife to help me as well very soon i got my first unhappy customer  
-00:03:26.320 mr x calls me one day and says hey can you please remind me when is my flight and i  
-00:03:32.400 look through my diary and i realize i don't have an entry corresponding to mr x and i tell mr x  
-00:03:37.280 hey look i don't have an entry responding to your corresponding to you mr x seems very disappointed  
-00:03:43.920 very angry and then disconnects the call now i start to think what might have happened either  
-00:03:50.560 mr x was delusional or maybe there was a fault at my end and then i see that there might have been  
-00:03:56.400 a problem it is possible when mr x wanted to store their reminder they might have called my wife and  
-00:04:03.040 my wife would have stored this entry that hey x wants a reminder for a flight at 7 00 pm tomorrow  
-00:04:10.400 however that entry is not with me because that call never came to me however when x wanted to  
-00:04:16.079 understand when their flight was they ended up calling me instead of my wife because they don't  
-00:04:21.360 know they only know this number one two three four one two three four and i don't have that entry  
-00:04:26.880 and this is why x is very unhappy this is what is called as consistency problem data consistency  
-00:04:33.920 problem which is an end consumer might have stored some data with me which and when they  
-00:04:41.680 ask me back there is no guarantee that they will get the data back because it depends on where the  
-00:04:46.160 request comes to if the request comes to my wife they'll get their data back if the request comes  
-00:04:51.040 to me they'll not get the data back if my wife's diary has that entry this is a big problem if not  
-00:04:57.120 solved my company will die so i start to think i start to think and i come up with a solution  
-00:05:02.160 i say hey look i mean here is what we could do when x calls me to say that please  
-00:05:08.800 note down that i have a flight tomorrow at imagine 6 pm i'll note it down in my  
-00:05:14.080 diary i'll also tell my wife to note down this entry which is also that tomorrow 6 pm flight  
-00:05:21.280 and only when both of us have written the entry in my diary in their own diaries then i return  
-00:05:27.280 success then i tell mr x i have noted down your entry that way there is guarantee that  
-00:05:33.760 both of our diabetes my diary and my wise diary they'll have the exact same entries  
-00:05:38.960 consistency of data they'll have the exact same entries and great my consistency problem is solved  
-00:05:44.800 now when x calls any one of us we can respond back with the right data points things were going great  
-00:05:52.080 one day i again start to face a problem one day my wife calls in sick she's not keeping well so  
-00:05:58.160 she's not in the office what that means is that my wife for the time being is gone for a day is gone  
-00:06:06.320 and at that very moment this another gentleman why calls me and tells me to note down an entry  
-00:06:12.880 i say okay sure what's your entry and they tell me you know what i have a flight tomorrow at 3 p.m  
-00:06:18.800 i said great let me note it down let me by the way also go and tell my wife to note it down oh by the  
-00:06:24.400 way my wife is not here she can't note it down and therefore i'll have to tell why that hey i can't  
-00:06:30.400 note down your request your request actually has failed which means for the entire day i can't take  
-00:06:36.080 in any new request that is a availability problem which is my system is not available to take  
-00:06:44.160 all kind of write requests in the case of software systems for example like facebook  
-00:06:48.080 you could think of facebook saying that for an entire day or for an hour or for a few minutes  
-00:06:53.440 you can't make any new posts or you can't post any new photos on on facebook that is an  
-00:06:59.760 availability problem so again i'm very stressed what do i do i don't want my business to fail  
-00:07:06.400 so i think and think and think and i come up with another solution i say you know what when my wife  
-00:07:10.880 is not here so i have my diary and imagine my wife is not here so i have written a bunch of entries  
-00:07:16.000 this new day comes whatever entries i get mr x says to note on something i'll note it  
-00:07:21.040 down here mister y says to put down something i'll note it down and when my wife returns back  
-00:07:25.680 because i want both of our diaries to be identical i tell her look you'll not take up any phone calls  
-00:07:32.560 till you have noted down all of the additional entries that i made in the previous day  
-00:07:36.960 or if she was gone for last two days than in the previous two days so you first note down all of  
-00:07:41.680 the additional entries and then you start taking calls and then my problem is solved now because if  
-00:07:46.160 if x calls me and says that please note down that i have a flight tomorrow at 8 pm even if my wife  
-00:07:52.320 is not in the office i can still note down the entry and therefore i am still available since my  
-00:07:57.040 wife will come back and she'll she will actually catch up with whatever new entries are there in  
-00:08:01.440 my diaries before answering any phone call so we're also consistent which is great things are  
-00:08:06.640 going super good and then comes another problem one day me and my wife we both have fight and we  
-00:08:14.560 stopped talking to each other so imagine i get a phone call x says hey look please no down i have a  
-00:08:20.640 flight tomorrow at 9 00 pm i can't note it down because i'm not able to talk to my wife and if  
-00:08:25.600 if i noted down then and say tell x that hey look i've noted down your entry then my system becomes  
-00:08:32.000 inconsistent right because my diary has now different entries my wife has different entries  
-00:08:36.640 and she's still taking calls so when this network partition happens when this network partition  
-00:08:42.640 happens where i'm not able to talk to my wife or other systems then i have to make a choice  
-00:08:49.840 do i want to stay consistent or do i want to say available if i want to stay consistent then if mr  
-00:08:58.000 x calls me and says please note down the entry i will have to say sorry i can't my system is down  
-00:09:05.040 it's not accepting any new write requests if i want to stay available then i can take down the  
-00:09:10.880 entry but then i become inconsistent so i if i choose consistency then i become unavailable  
-00:09:16.720 if i choose availability then i become inconsistent and that is exactly the  
-00:09:21.760 cap's theorem caps theorem says that if you have consistency if you have availability  
-00:09:28.960 and if you have partition tolerance then at a time you can only guarantee two out of these  
-00:09:36.800 you can't promise all three at the same time which means when this network partition happens  
-00:09:43.520 i would have to choose between consistency and availability i can't have both that's the gap  
-00:09:49.120 theorem now i have two bonuses to add here most systems that are available and partition tolerance  
-00:09:56.720 which is called ap a for availability p for partitioning c for consistency right  
-00:10:01.680 most systems that are ap can still make sure that they become eventually consistent what does that  
-00:10:08.000 mean that means eventually my and my wife's diary they have same entries how do i make sure of that  
-00:10:14.240 whenever we start talking again we can exchange notes think i mean or maybe just imagine that  
-00:10:18.720 there is a clerk here that i've hired who just takes up all of the new entries in the last one r  
-00:10:24.320 tells me what those entries were so i take those down also by the way asked me what were the  
-00:10:28.960 entries that i made in the last one are goes back to my wife and tells here are the new entries that  
-00:10:33.600 were made in the last one are so there might be periods in between that i was inconsistent  
-00:10:38.560 but eventually we become consistent so that is eventually consistency there is one more extension  
-00:10:45.440 to cap theorem that was done very recently actually not very recently about 10 years back  
-00:10:51.520 which is called as p a c e l c theorem and what this theorem states is that when network partition  
-00:10:59.360 happens when my systems can't talk to each other then sure you have to choose between availability  
-00:11:06.640 or consistency you can't have both however there are going to be cases when my systems  
-00:11:13.040 can talk to each other which means there is there is no network partition which is else  
-00:11:18.160 so else i have to choose between latency or consistency i can't have both  
-00:11:26.480 if you notice when i made this decision that to stay consistent i will make sure that on every  
-00:11:31.600 single call i will make sure my wife also notes down the entry and only then i return success  
-00:11:37.840 then i'm actually waiting for my wife to note down that entry my wife could be doing something else  
-00:11:42.000 at that time my wife would be answering some other call and in that case it the entire request might  
-00:11:47.520 end up taking a lot of time so the latency could become high because i want consistency however if  
-00:11:54.240 i was willing to let go of consistency which is i wanted to say that hey look i'll just note it down  
-00:11:59.200 and maybe my my wife would probably catch up later on then latency could stay really low so then you  
-00:12:05.600 would actually have a balance between latency and consistency then there is no network partition so  
-00:12:10.720 that's what this lc theorem is which is just an extension to the cap theorem because cap  
-00:12:15.040 theorem does not talk about latency i hope that made sense to you and i hope that was helpful  
-00:12:20.640 this cat theorem is one of the most basic and one of the most useful theorems you'll come across  
-00:12:25.600 when designing distributed systems i'll keep doing more videos like this if you like this  
-00:12:29.520 video please like the current video and subscribe to the channel thank you thank you so much  
-00:12:35.520 if you like the video please like this video and subscribe to the channel leave a comment  
-00:12:41.360 if you want me to do a video on on a topic that you find interesting thank you so much
+
+
+one two three four one two three four people could just call me and they can tell me  
+
+what they want to remember and then when they call me back i tell them what they wanted to remember  
+
+and then things work it seems to me that this is a great idea .
+
+
+
+let's say i got a call from x and x says hey please remember that i have a  
+
+ flight tomorrow at 9 00 pm i say great next time they call and they ask me tell me what i wanted  
+
+you to remember and then i tell them you know what do you have a flight tomorrow at 9pm .
+
+
+
+i charge people very normal amount of money to store this information
+
+
+
+Problem 1: data avaibility
+
+i start to hit the problem and you'll notice most systems they start to hit the problem when they hit scale  
+
+ then i realize that i'm getting a lot of calls and i'm not enough to address all of those calls  
+
+myself 
+
+
+
+Sol 1:
+
+let me let me get my wife also involved  
+
+so now this number actually has me and my wife both of us both of us sit with our diaries where  
+
+the call gets routed to either one of us whoever is free .
+
+
+
+i have suddenly now doubled my capacity if i was able to take 1000 requests in a day before now i can take  
+
+2000 requests because i have my wife to help me .
+
+
+
+Problem 2 : data inconsistency
+
+i got my first unhappy customer  mr x calls me one day and says hey can you please remind me when is my flight and i  
+
+look through my diary and i realize i don't have an entry corresponding to mr x and i tell mr x  
+
+hey look i don't have an entry responding to your corresponding to you mr x seems very disappointed  
+
+very angry and then disconnects 
+
+
+
+Possibility :  it is possible when mr x wanted to store their reminder they might have called my wife and  
+
+my wife would have stored this entry that hey x wants a reminder for a flight at 7 00 pm tomorrow  
+
+however that entry is not with me because that call never came to me
+
+
+
+case : i don't have that entry and this is why x is very unhappy this is what is called as consistency problem data consistency 
+
+it is possible when mr x wanted to store their reminder they might have called my wife and  my wife would have stored this entry that hey x wants a reminder for a flight at 7 00 pm tomorrow however that entry is not with me because that call never came to me 
+
+the call now i start to think what might have happened either  .
+
+
+
+Now our customers donot have gurantee that they will get their data back because it completely depends on where the req goes first, 
+
+if req goes to my wife , her diary would have the remonder not mine , and if the same persons second time calls to our compny and its req comes to us , then my diary won't have its data .
+
+
+
+i come up with a solution i say hey look i mean here is what we could do when x calls me to say that please  
+
+note down that i have a flight tomorrow at imagine 6 pm i'll note it down in my  
+
+diary i'll also tell my wife to note down this entry which is also that tomorrow 6 pm flight  
+
+
+
+only when both of us have written the entry in my diary in their own diaries then i return  
+
+success then i tell mr x i have noted down your entry
+
+
+
+so then both of our databases would have same data , both of us would have the exact same entries and great my consistency problem is solved
+
+
+
+problem 3 : one day my wife falls ill and she is not available to take notes
+
+
+
+sol : i will note down all the entries in my diary as much as i can and when my wife returns back i will ask her to note down all the last days additional entries first and then only start taking the calls , because i want both of my daries to be identical .
+
+so my wifw would catch up what ever new entries were there in my diary 
+
+
+
+problem 3 : me and my wife have fight and we have stopped talking to each other 
+
+when person x calls me to add his entry ,i will add it in my diary , but because me and my wife are not talking to each other hers diary would not have the entry
+
+
+
+
+
+when this network partition  
+
+happens where i'm not able to talk to my wife or other systems then i have to make a choice  
+
+ do i want to stay consistent or do i want to say available 
+
+
+
+IF I AM CONSISTANT :x calls me and says please note down the entry i will have to say sorry i can't my system is down it's not accepting any new write requests , because i have reacked my max capacity to take the entries .
+
+
+
+IF I AM AVAIALBLE : then i can take down the  entry but then i become inconsistent
+
+
+
+so i if i choose consistency then i become unavailable if i choose availability then i become inconsistent and that is exactly the  cap's theorem caps theorem says .
+
+ if you have consistency if you have availability  and if you have partition tolerance then at a time you can only guarantee two out of these  you can't promise all three at the same time .
+
+
+
+C : consistency
+
+A: avaibility
+
+P: Partioning tolerance 
+
+
+
+I can also make my system/ buisness eventually consistant , but how?
+
+ans : when me and my wife starts taking again, iafter that i can ask her to note down all the extra entries
+
+OR
+
+i can hire a servant who can pass the information of new entried from me to my wife and vice versa, thiws would take time but we would become eventually consistane , but there would be problem of latency(delay) here .
+
+
+
+extension to cap theorem : p a c e l c theorem
+
+his theorem states is that when network partition  happens when my systems can't talk to each other then sure you have to choose between availability  or consistency you can't have both . but when there is a case when i keep a clert and we make somehow possible that my 2 systems can indirectly communicate each other , iw there is not network partition then then i have to chose between "latency" and "consistency" , i can't have both at same time .
+
+
+
+IF I DECIDE TO STAY CONSISTANT : for decision that to stay consistent i will make sure that on every 
+single call i will make sure my wife also notes down the entry and only then i return success  
+then i'm actually waiting for my wife to share the success code that shae has successfuly noted the entry , but this would consume a lot of time  and my buisness could fail due to delay. so here lateccy could become high .
+
+
+
+if i choose not to be consistant , then there are chances that my customers would not get the reminder properly
+
+so we have to choose between latency and consistency then there is no network partition.
+
+
+
+that's what this lc theorem is which is just an extension to the cap theorem because cap theorem does not talk about latency  .
+
