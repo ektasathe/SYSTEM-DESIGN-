@@ -2,146 +2,71 @@
 # https://www.youtube.com/watch/8UryASGBiR4
 
 example of of a real world example of let's say you imagine i am  
-
 an entrepreneur i'm looking for ideas and i feel you know what like people need reminders 
 
-
-
 one two three four one two three four people could just call me and they can tell me  
-
 what they want to remember and then when they call me back i tell them what they wanted to remember  
-
 and then things work it seems to me that this is a great idea .
 
-
-
 let's say i got a call from x and x says hey please remember that i have a  
-
- flight tomorrow at 9 00 pm i say great next time they call and they ask me tell me what i wanted  
-
+flight tomorrow at 9 00 pm i say great next time they call and they ask me tell me what i wanted  
 you to remember and then i tell them you know what do you have a flight tomorrow at 9pm .
-
-
-
 i charge people very normal amount of money to store this information
-
-
 
 Problem 1: data avaibility
 
-i start to hit the problem and you'll notice most systems they start to hit the problem when they hit scale  
-
- then i realize that i'm getting a lot of calls and i'm not enough to address all of those calls  
-
+i start to hit the problem and you'll notice most systems they start to hit the problem when they hit scale  then i realize that i'm getting a lot of calls and i'm not enough to address all of those calls  
 myself 
 
-
-
 Sol 1:
+let me let me get my wife also involved so now this number actually has me and my wife both of us both of us sit with our diaries where the call gets routed to either one of us whoever is free .
 
-let me let me get my wife also involved  
-
-so now this number actually has me and my wife both of us both of us sit with our diaries where  
-
-the call gets routed to either one of us whoever is free .
-
-
-
-i have suddenly now doubled my capacity if i was able to take 1000 requests in a day before now i can take  
-
-2000 requests because i have my wife to help me .
-
-
+i have suddenly now doubled my capacity if i was able to take 1000 requests in a day before now i can take 2000 requests because i have my wife to help me .
 
 Problem 2 : data inconsistency
-
-i got my first unhappy customer  mr x calls me one day and says hey can you please remind me when is my flight and i  
-
-look through my diary and i realize i don't have an entry corresponding to mr x and i tell mr x  
-
+i got my first unhappy customer  mr x calls me one day and says hey can you please remind me when is my flight and i look through my diary and i realize i don't have an entry corresponding to mr x and i tell mr x  
 hey look i don't have an entry responding to your corresponding to you mr x seems very disappointed  
-
 very angry and then disconnects 
 
 
-
 Possibility :  it is possible when mr x wanted to store their reminder they might have called my wife and  
-
 my wife would have stored this entry that hey x wants a reminder for a flight at 7 00 pm tomorrow  
-
 however that entry is not with me because that call never came to me
-
-
 
 case : i don't have that entry and this is why x is very unhappy this is what is called as consistency problem data consistency 
 
 it is possible when mr x wanted to store their reminder they might have called my wife and  my wife would have stored this entry that hey x wants a reminder for a flight at 7 00 pm tomorrow however that entry is not with me because that call never came to me 
 
 the call now i start to think what might have happened either  .
-
-
-
 Now our customers donot have gurantee that they will get their data back because it completely depends on where the req goes first, 
 
-if req goes to my wife , her diary would have the remonder not mine , and if the same persons second time calls to our compny and its req comes to us , then my diary won't have its data .
-
-
-
-i come up with a solution i say hey look i mean here is what we could do when x calls me to say that please  
+if req goes to my wife , her diary would have the remonder not mine , and if the same persons second time calls to our compny and its req comes to us , then my diary won't have its data .i come up with a solution i say hey look i mean here is what we could do when x calls me to say that please  
 
 note down that i have a flight tomorrow at imagine 6 pm i'll note it down in my  
-
 diary i'll also tell my wife to note down this entry which is also that tomorrow 6 pm flight  
-
-
-
 only when both of us have written the entry in my diary in their own diaries then i return  
-
 success then i tell mr x i have noted down your entry
-
-
 
 so then both of our databases would have same data , both of us would have the exact same entries and great my consistency problem is solved
 
 
-
 problem 3 : one day my wife falls ill and she is not available to take notes
-
-
 
 sol : i will note down all the entries in my diary as much as i can and when my wife returns back i will ask her to note down all the last days additional entries first and then only start taking the calls , because i want both of my daries to be identical .
 
-so my wifw would catch up what ever new entries were there in my diary 
-
-
-
+so my wife would catch up what ever new entries were there in my diary 
 problem 3 : me and my wife have fight and we have stopped talking to each other 
 
 when person x calls me to add his entry ,i will add it in my diary , but because me and my wife are not talking to each other hers diary would not have the entry
 
-
-
-
-
-when this network partition  
-
-happens where i'm not able to talk to my wife or other systems then i have to make a choice  
-
- do i want to stay consistent or do i want to say available 
-
-
+when this network partition happens where i'm not able to talk to my wife or other systems then i have to make a choice do i want to stay consistent or do i want to say available 
 
 IF I AM CONSISTANT :x calls me and says please note down the entry i will have to say sorry i can't my system is down it's not accepting any new write requests , because i have reacked my max capacity to take the entries .
 
-
-
 IF I AM AVAIALBLE : then i can take down the  entry but then i become inconsistent
-
-
-
 so i if i choose consistency then i become unavailable if i choose availability then i become inconsistent and that is exactly the  cap's theorem caps theorem says .
 
- if you have consistency if you have availability  and if you have partition tolerance then at a time you can only guarantee two out of these  you can't promise all three at the same time .
+f you have consistency if you have availability  and if you have partition tolerance then at a time you can only guarantee two out of these  you can't promise all three at the same time .
 
 
 
@@ -153,16 +78,12 @@ P: Partioning tolerance
 
 
 
-I can also make my system/ buisness eventually consistant , but how?
-
+prblm : I can also make my system/ buisness eventually consistant , but how?
 ans : when me and my wife starts taking again, iafter that i can ask her to note down all the extra entries
 
 OR
 
 i can hire a servant who can pass the information of new entried from me to my wife and vice versa, thiws would take time but we would become eventually consistane , but there would be problem of latency(delay) here .
-
-
-
 extension to cap theorem : p a c e l c theorem
 
 his theorem states is that when network partition  happens when my systems can't talk to each other then sure you have to choose between availability  or consistency you can't have both . but when there is a case when i keep a clert and we make somehow possible that my 2 systems can indirectly communicate each other , iw there is not network partition then then i have to chose between "latency" and "consistency" , i can't have both at same time .
@@ -173,13 +94,7 @@ IF I DECIDE TO STAY CONSISTANT : for decision that to stay consistent i will mak
 single call i will make sure my wife also notes down the entry and only then i return success  
 then i'm actually waiting for my wife to share the success code that shae has successfuly noted the entry , but this would consume a lot of time  and my buisness could fail due to delay. so here lateccy could become high .
 
-
-
-if i choose not to be consistant , then there are chances that my customers would not get the reminder properly
-
-so we have to choose between latency and consistency then there is no network partition.
-
-
+if i choose not to be consistant , then there are chances that my customers would not get the reminder properly so we have to choose between latency and consistency then there is no network partition.
 
 that's what this lc theorem is which is just an extension to the cap theorem because cap theorem does not talk about latency  .
 
